@@ -44,8 +44,6 @@ describe('getUserId', () => {
   });
 
   it('returns the stored ID when a valid UUID exists', () => {
-    const existingId = '550e8400-e29b-41d4-a716-446655440000';
-    // This is actually a v4-valid format (4 in position 13, a in position 17)
     const validId = '550e8400-e29b-4bd4-a716-446655440000';
     localStorage.setItem('ai-smart-todo-user-id', validId);
     expect(getUserId()).toBe(validId);
