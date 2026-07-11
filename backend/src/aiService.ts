@@ -279,11 +279,15 @@ export async function categorizeAndScore(
       const result = parseAiResponse(rawResponse);
       recordSuccess();
       return result;
-    } catch {
+    } catch (error: unknown) {
+      const errMsg = error instanceof Error ? error.message : String(error);
+      const errName = error instanceof Error ? error.name : 'Unknown';
+      console.error(`[AI] Attempt ${attempt + 1}/${MAX_RETRIES + 1} failed: ${errName}: ${errMsg}`);
       recordFailure();
 
       // If circuit breaker tripped during retries, stop immediately
       if (isCircuitBreakerOpen()) {
+        console.error('[AI] Circuit breaker open, returning defaults');
         return { ...DEFAULT_AI_RESULT };
       }
 
