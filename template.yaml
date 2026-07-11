@@ -151,7 +151,7 @@ Resources:
   # ──────────────────────────────────────────────
   TodoApiKey:
     Type: AWS::ApiGateway::ApiKey
-    DependsOn: TodoApidevStage
+    DependsOn: TodoFunction
     Properties:
       Name: !Sub 'ai-smart-todo-key-${Environment}'
       Enabled: true
@@ -161,7 +161,7 @@ Resources:
 
   TodoUsagePlan:
     Type: AWS::ApiGateway::UsagePlan
-    DependsOn: TodoApidevStage
+    DependsOn: TodoFunction
     Properties:
       UsagePlanName: !Sub 'ai-smart-todo-plan-${Environment}'
       ApiStages:
