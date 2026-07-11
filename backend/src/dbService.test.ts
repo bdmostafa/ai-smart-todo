@@ -1,8 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Task } from './types';
 
-// Mock the AWS SDK
-const mockSend = vi.fn();
+// Mock the AWS SDK - use vi.hoisted so mockSend is available in factory functions
+const mockSend = vi.hoisted(() => vi.fn());
+
 vi.mock('@aws-sdk/client-dynamodb', () => ({
   DynamoDBClient: vi.fn(() => ({})),
 }));
@@ -10,10 +11,10 @@ vi.mock('@aws-sdk/lib-dynamodb', () => ({
   DynamoDBDocumentClient: {
     from: vi.fn(() => ({ send: mockSend })),
   },
-  PutCommand: vi.fn((input) => ({ input, type: 'Put' })),
-  QueryCommand: vi.fn((input) => ({ input, type: 'Query' })),
-  UpdateCommand: vi.fn((input) => ({ input, type: 'Update' })),
-  DeleteCommand: vi.fn((input) => ({ input, type: 'Delete' })),
+  PutCommand: vi.fn((input: unknown) => ({ input, type: 'Put' })),
+  QueryCommand: vi.fn((input: unknown) => ({ input, type: 'Query' })),
+  UpdateCommand: vi.fn((input: unknown) => ({ input, type: 'Update' })),
+  DeleteCommand: vi.fn((input: unknown) => ({ input, type: 'Delete' })),
 }));
 
 import {
