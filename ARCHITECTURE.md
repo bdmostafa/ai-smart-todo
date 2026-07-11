@@ -91,6 +91,7 @@ AI Smart Todo is a serverless, AI-powered task management application built enti
 │                          │
 └──────────────────────────┘
 ```
+<img width="1536" height="1024" alt="high level architecture" src="https://github.com/user-attachments/assets/483e6160-7a7d-4ec6-a46e-f4728ccb7853" />
 
 ---
 
@@ -135,6 +136,8 @@ User types task → [Frontend] → POST /tasks (x-api-key, x-user-id)
                                     ▼
                    [Frontend: add to Zustand store → re-render]
 ```
+
+<img width="1086" height="1448" alt="Create task flow" src="https://github.com/user-attachments/assets/d17e4a39-5084-4316-bfaa-8125e386255a" />
 
 ### 2.2 Optimistic Update Pattern (Frontend)
 
@@ -209,6 +212,8 @@ The AI prompt is engineered to return structured JSON with three fields:
 │ }                                            │
 └─────────────────────────────────────────────┘
 ```
+
+<img width="1536" height="1024" alt="AI prompt strategy" src="https://github.com/user-attachments/assets/31514d5f-abcf-4650-bc2f-775aac28620b" />
 
 ---
 
@@ -301,6 +306,8 @@ index.html (anti-flash script)
 | CORS | Configured at API Gateway level with specific headers |
 | Frontend Hosting | HSTS, X-Frame-Options: DENY, X-Content-Type-Options: nosniff |
 | Data Isolation | Each user's data partitioned by userId in DynamoDB PK |
+
+<img width="262" height="509" alt="security layer" src="https://github.com/user-attachments/assets/7afedc71-c3e8-4cc4-a7ab-c07db5d08721" />
 
 ---
 
