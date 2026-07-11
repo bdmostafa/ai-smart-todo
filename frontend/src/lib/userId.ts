@@ -41,3 +41,20 @@ export function getUserId(): string {
 
   return newId;
 }
+
+/**
+ * Regenerate the user ID — generates a new UUID v4 and stores it,
+ * replacing the old value. Used when a 401 response indicates the
+ * current userId is invalid.
+ *
+ * Requirements: 10.4
+ */
+export function regenerateUserId(): string {
+  const newId = uuidv4();
+  try {
+    localStorage.setItem(STORAGE_KEY, newId);
+  } catch {
+    // Proceed with the generated ID even if storage fails
+  }
+  return newId;
+}

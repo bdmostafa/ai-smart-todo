@@ -4,6 +4,7 @@ import type {
   GetTasksResponse,
   ErrorResponse,
 } from '../types';
+import { regenerateUserId } from './userId';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 const API_KEY = import.meta.env.VITE_API_KEY ?? '';
@@ -25,11 +26,15 @@ export class ApiError extends Error {
 
 /**
  * Internal helper to make fetch requests with common headers.
+ * Handles 401 responses by regenerating the userId and retrying once.
+ *
+ * Requirements: 8.5, 10.4
  */
 async function request<T>(
   path: string,
   userId: string,
   options: RequestInit = {},
+  isRetry = false,
 ): Promise<T> {
   const url = `${API_URL}${path}`;
 
@@ -55,6 +60,12 @@ async function request<T>(
       message = body.error.message;
     } catch {
       // Use defaults if response body isn't parseable
+    }
+
+    // Handle 401: regenerate userId and retry once
+    if (response.status === 401 && !isRetry) {
+      const newUserId = regenerateUserId();
+      return request<T>(path, newUserId, options, true);
     }
 
     throw new ApiError(response.status, code, message);
