@@ -76,7 +76,7 @@ This plan implements a serverless AI-powered task management application using R
     - Assert: store then retrieve returns identical values for description, quadrant, priorityScore, status, createdAt
 
 - [ ] 4. Implement AI service integration
-  - [~] 4.1 Implement Bedrock AI service module
+  - [-] 4.1 Implement Bedrock AI service module
     - Create `backend/src/aiService.ts`
     - Implement `categorizeAndScore(description: string, taskCount: number): Promise<AiResult>` — construct prompt, invoke Bedrock Claude 3 Haiku, parse response
     - Build prompt template with quadrant rules, scoring rules, task context, and current date
