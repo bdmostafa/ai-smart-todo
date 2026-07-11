@@ -12,7 +12,7 @@ import { AiResult, Quadrant } from './types';
 
 // --- Constants ---
 
-const MODEL_ID = 'anthropic.claude-3-haiku-20240307-v1:0';
+const MODEL_ID = 'us.anthropic.claude-haiku-4-5-20251001-v1:0';
 const MAX_RETRIES = 3;
 const RETRY_INTERVAL_MS = 5000;
 const CIRCUIT_BREAKER_THRESHOLD = 3;
