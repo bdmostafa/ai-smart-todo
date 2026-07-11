@@ -1,0 +1,24 @@
+{
+  "name": "ai-smart-todo-backend",
+  "version": "1.0.0",
+  "description": "AI Smart To-Do serverless backend",
+  "main": "dist/handler.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1",
+    "@aws-sdk/client-dynamodb": "^3.650.0",
+    "@aws-sdk/lib-dynamodb": "^3.650.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.650.0"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.0",
+    "fast-check": "^3.22.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.5.0",
+    "@types/uuid": "^10.0.0"
+  }
+}
