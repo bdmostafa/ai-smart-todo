@@ -30,7 +30,7 @@ describe('isValidUuidV4', () => {
 
 describe('getUserId', () => {
   beforeEach(() => {
-    localStorage.clear();
+    window.localStorage.clear();
   });
 
   it('generates a valid UUID v4 on first visit', () => {
@@ -40,7 +40,7 @@ describe('getUserId', () => {
 
   it('stores the generated ID in localStorage', () => {
     const id = getUserId();
-    expect(localStorage.getItem('ai-smart-todo-user-id')).toBe(id);
+    expect(window.localStorage.getItem('ai-smart-todo-user-id')).toBe(id);
   });
 
   it('returns the same ID on subsequent calls', () => {
@@ -51,12 +51,12 @@ describe('getUserId', () => {
 
   it('returns existing valid ID from localStorage', () => {
     const existing = '550e8400-e29b-41d4-a716-446655440000';
-    localStorage.setItem('ai-smart-todo-user-id', existing);
+    window.localStorage.setItem('ai-smart-todo-user-id', existing);
     expect(getUserId()).toBe(existing);
   });
 
   it('generates a new ID if stored value is invalid', () => {
-    localStorage.setItem('ai-smart-todo-user-id', 'invalid-value');
+    window.localStorage.setItem('ai-smart-todo-user-id', 'invalid-value');
     const id = getUserId();
     expect(isValidUuidV4(id)).toBe(true);
     expect(id).not.toBe('invalid-value');

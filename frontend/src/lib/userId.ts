@@ -14,6 +14,23 @@ export function isValidUuidV4(id: string): boolean {
 }
 
 /**
+ * Gets the available localStorage instance.
+ * In browser environments this is window.localStorage.
+ * Falls back gracefully when unavailable.
+ */
+function getStorage(): Storage | null {
+  try {
+    // Use window.localStorage to avoid Node 26 globalThis.localStorage issues
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return window.localStorage;
+    }
+  } catch {
+    // localStorage may be unavailable
+  }
+  return null;
+}
+
+/**
  * Retrieves the user ID from localStorage.
  * If no valid UUID v4 is stored, generates a new one and persists it.
  *
@@ -23,20 +40,22 @@ export function isValidUuidV4(id: string): boolean {
  * - If stored value is invalid, generate a new one (empty state)
  */
 export function getUserId(): string {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
+  const storage = getStorage();
+
+  if (storage) {
+    const stored = storage.getItem(STORAGE_KEY);
     if (stored && isValidUuidV4(stored)) {
       return stored;
     }
-  } catch {
-    // localStorage may be unavailable (e.g., private browsing in some browsers)
   }
 
   const newId = uuidv4();
-  try {
-    localStorage.setItem(STORAGE_KEY, newId);
-  } catch {
-    // Proceed with in-memory ID if storage fails
+  if (storage) {
+    try {
+      storage.setItem(STORAGE_KEY, newId);
+    } catch {
+      // Proceed with in-memory ID if storage write fails
+    }
   }
   return newId;
 }
