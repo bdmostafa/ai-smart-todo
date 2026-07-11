@@ -75,8 +75,8 @@ This plan implements a serverless AI-powered task management application using R
     - Generate random valid task objects covering all field combinations
     - Assert: store then retrieve returns identical values for description, quadrant, priorityScore, status, createdAt
 
-- [ ] 4. Implement AI service integration
-  - [-] 4.1 Implement Bedrock AI service module
+- [x] 4. Implement AI service integration
+  - [x] 4.1 Implement Bedrock AI service module
     - Create `backend/src/aiService.ts`
     - Implement `categorizeAndScore(description: string, taskCount: number): Promise<AiResult>` — construct prompt, invoke Bedrock Claude 3 Haiku, parse response
     - Build prompt template with quadrant rules, scoring rules, task context, and current date
@@ -92,8 +92,8 @@ This plan implements a serverless AI-powered task management application using R
     - Generate random JSON-like strings, partial responses, malformed output
     - Assert: always produces valid quadrant from enum and integer score in [1, 100]; defaults on failure
 
-- [ ] 5. Implement scoring and top-three logic
-  - [~] 5.1 Implement priority scorer module
+- [x] 5. Implement scoring and top-three logic
+  - [x] 5.1 Implement priority scorer module
     - Create `backend/src/scorer.ts`
     - Implement `selectTopThree(tasks: Task[]): string[]` — sort incomplete tasks by priorityScore descending, return top 3 taskIds (or fewer if <3 exist)
     - Implement `recalculateScores(tasks: Task[]): Promise<Task[]>` — batch re-invoke AI for all incomplete tasks
@@ -113,7 +113,7 @@ This plan implements a serverless AI-powered task management application using R
     - Assert: grouped by quadrant in correct order; within quadrant sorted by score desc, ties by createdAt desc
 
 - [ ] 6. Implement task service business logic
-  - [~] 6.1 Implement task service orchestration
+  - [-] 6.1 Implement task service orchestration
     - Create `backend/src/taskService.ts`
     - Implement `createTask(userId: string, description: string)`: validate → write to DDB with defaults → invoke AI → update task with AI results (write-then-enrich pattern)
     - Implement `completeTask(userId: string, taskId: string)`: update status to "complete", set completedAt, update GSI keys
