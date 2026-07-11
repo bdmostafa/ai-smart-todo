@@ -1,5 +1,5 @@
 /**
- * Footer – minimal app footer with branding.
+ * Footer – minimal app footer with branding and social link.
  */
 export function Footer() {
   const year = new Date().getFullYear();
@@ -8,7 +8,17 @@ export function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <p className="footer__text">
-          Made by Mostafa and built with AI to make your day productive
+          Crafted by{' '}
+          <a
+            href="https://www.linkedin.com/in/md-mostafa/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer__social-link"
+            aria-label="Mostafa on LinkedIn"
+          >
+            Mostafa
+          </a>
+          {' '}— powered by AI to simplify your day
         </p>
         <p className="footer__copyright">
           © {year} AI Smart Todo. All rights reserved.

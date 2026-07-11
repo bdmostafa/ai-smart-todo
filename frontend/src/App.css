@@ -957,22 +957,17 @@
 .footer__social-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 500;
+  gap: 4px;
+  font-size: inherit;
+  font-weight: 600;
   color: var(--accent-primary);
   text-decoration: none;
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border-accent);
-  background: var(--accent-surface);
-  transition: all var(--transition-fast);
+  transition: opacity var(--transition-fast);
 }
 
 .footer__social-link:hover {
-  background: var(--accent-glow);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .footer__copyright {
