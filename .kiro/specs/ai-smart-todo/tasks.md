@@ -135,8 +135,8 @@ This plan implements a serverless AI-powered task management application using R
     - Generate random task arrays with mixed statuses and deletion flags
     - Assert: active view contains only incomplete, non-deleted tasks
 
-- [ ] 7. Implement Lambda handler with API routing
-  - [-] 7.1 Implement Lambda entry point and route handler
+- [x] 7. Implement Lambda handler with API routing
+  - [x] 7.1 Implement Lambda entry point and route handler
     - Create `backend/src/handler.ts`
     - Implement route matching for all endpoints: POST /tasks, GET /tasks, PATCH /tasks/{taskId}/complete, PATCH /tasks/{taskId}/incomplete, DELETE /tasks/{taskId}, POST /tasks/top-three, POST /tasks/recalculate
     - Extract userId from request headers
@@ -145,7 +145,7 @@ This plan implements a serverless AI-powered task management application using R
     - Handle CORS headers for frontend access
     - _Requirements: 8.1, 8.2, 8.5, 8.6_
 
-  - [-] 7.2 Implement API key authorization middleware
+  - [x] 7.2 Implement API key authorization middleware
     - Add middleware function that checks for API key header presence and value match
     - Return 401 Unauthorized with appropriate error body for missing/invalid keys
     - Apply middleware before any route processing
@@ -157,11 +157,11 @@ This plan implements a serverless AI-powered task management application using R
     - Generate random header objects (with/without key, valid/invalid values)
     - Assert: allows processing iff valid key present; rejects with 401 otherwise
 
-- [~] 8. Checkpoint - Backend complete
+- [x] 8. Checkpoint - Backend complete
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 9. Implement React frontend - Core components
-  - [~] 9.1 Set up React frontend with Vite and state management
+  - [-] 9.1 Set up React frontend with Vite and state management
     - Initialize Vite React TypeScript project in `frontend/`
     - Set up app state management (React Context or Zustand) with `AppState` interface
     - Implement userId generation/retrieval from localStorage on app load
