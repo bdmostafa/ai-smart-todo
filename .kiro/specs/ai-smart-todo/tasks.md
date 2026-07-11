@@ -30,7 +30,7 @@ This plan implements a serverless AI-powered task management application using R
     - Return typed result with error messages indicating allowed character range
     - _Requirements: 1.2, 1.3_
 
-  - [ ]* 2.2 Write property test for task description validation
+  - [x]* 2.2 Write property test for task description validation
     - **Property 1: Task description validation**
     - **Validates: Requirements 1.2, 1.3**
     - Use fast-check to generate random strings (0-1000 chars), whitespace variants, unicode
@@ -41,7 +41,7 @@ This plan implements a serverless AI-powered task management application using R
     - Add `generateUserId(): string` using `crypto.randomUUID()` or `uuid` package
     - _Requirements: 10.1, 10.4_
 
-  - [ ]* 2.4 Write property test for UUID v4 validation
+  - [x]* 2.4 Write property test for UUID v4 validation
     - **Property 8: UUID v4 validation and generation**
     - **Validates: Requirements 10.1, 10.4**
     - Generate random strings (valid UUID v4, invalid formats, empty)
@@ -52,7 +52,7 @@ This plan implements a serverless AI-powered task management application using R
     - Return 400-style error with field-specific messages for missing/invalid fields
     - _Requirements: 8.6, 1.3_
 
-  - [ ]* 2.6 Write property test for request body validation
+  - [x]* 2.6 Write property test for request body validation
     - **Property 10: Request body validation**
     - **Validates: Requirements 8.6, 1.3**
     - Generate random objects (missing fields, wrong types, boundary values)
@@ -69,7 +69,7 @@ This plan implements a serverless AI-powered task management application using R
     - Include retry logic: 1 retry with 2-second interval for both read and write operations
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5_
 
-  - [ ]* 3.2 Write property test for data persistence round-trip
+  - [x]* 3.2 Write property test for data persistence round-trip
     - **Property 7: Task data persistence round-trip**
     - **Validates: Requirements 9.1**
     - Generate random valid task objects covering all field combinations
@@ -86,7 +86,7 @@ This plan implements a serverless AI-powered task management application using R
     - Implement circuit breaker: after 3 consecutive failures, stop calls for 60 seconds, assign defaults
     - _Requirements: 2.1, 2.3, 3.1, 3.2, 2.4, 2.5, 3.5_
 
-  - [ ]* 4.2 Write property test for AI response parsing
+  - [x]* 4.2 Write property test for AI response parsing
     - **Property 2: AI response parsing produces valid domain values**
     - **Validates: Requirements 2.1, 3.1, 3.5**
     - Generate random JSON-like strings, partial responses, malformed output
@@ -100,13 +100,13 @@ This plan implements a serverless AI-powered task management application using R
     - Implement `getTaskOrdering(tasks: Task[]): Task[]` — group by quadrant [do-first, schedule, delegate, eliminate], sort within quadrant by score desc then createdAt desc
     - _Requirements: 4.2, 4.4, 3.4, 7.1, 7.2_
 
-  - [ ]* 5.2 Write property test for top-three selection
+  - [x]* 5.2 Write property test for top-three selection
     - **Property 3: Top-three selection correctness**
     - **Validates: Requirements 4.2, 4.4**
     - Generate random task arrays (0-50 items) with random scores 1-100
     - Assert: returns highest-scored tasks in descending order; returns all when <3; returns empty when none
 
-  - [ ]* 5.3 Write property test for task ordering within quadrant view
+  - [x]* 5.3 Write property test for task ordering within quadrant view
     - **Property 6: Task ordering within quadrant view**
     - **Validates: Requirements 7.1, 7.2**
     - Generate random tasks in same/different quadrants with random scores and timestamps
@@ -123,13 +123,13 @@ This plan implements a serverless AI-powered task management application using R
     - Implement `recalculate(userId: string)`: get incomplete tasks, re-score all, update DDB
     - _Requirements: 1.1, 1.4, 5.1, 5.3, 5.5, 6.2, 6.3, 4.1, 4.5, 3.4_
 
-  - [ ]* 6.2 Write property test for task completion round-trip
+  - [x]* 6.2 Write property test for task completion round-trip
     - **Property 5: Task completion round-trip**
     - **Validates: Requirements 5.5**
     - Generate random tasks with known quadrants
     - Assert: complete then restore preserves original quadrant
 
-  - [ ]* 6.3 Write property test for view filtering invariant
+  - [x]* 6.3 Write property test for view filtering invariant
     - **Property 4: View filtering invariant**
     - **Validates: Requirements 5.3, 6.3**
     - Generate random task arrays with mixed statuses and deletion flags
@@ -151,7 +151,7 @@ This plan implements a serverless AI-powered task management application using R
     - Apply middleware before any route processing
     - _Requirements: 8.3, 8.4_
 
-  - [ ]* 7.3 Write property test for API key authorization
+  - [x]* 7.3 Write property test for API key authorization
     - **Property 9: API key authorization gate**
     - **Validates: Requirements 8.3, 8.4**
     - Generate random header objects (with/without key, valid/invalid values)
@@ -160,7 +160,7 @@ This plan implements a serverless AI-powered task management application using R
 - [x] 8. Checkpoint - Backend complete
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 9. Implement React frontend - Core components
+- [x] 9. Implement React frontend - Core components
   - [x] 9.1 Set up React frontend with Vite and state management
     - Initialize Vite React TypeScript project in `frontend/`
     - Set up app state management (React Context or Zustand) with `AppState` interface
@@ -169,7 +169,7 @@ This plan implements a serverless AI-powered task management application using R
     - Implement optimistic update pattern with rollback on failure
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5_
 
-  - [ ] 9.2 Implement TaskInput component
+  - [x] 9.2 Implement TaskInput component
     - Build text input with character counter (1-500 chars)
     - Implement client-side trim and validation before submission
     - Display validation error messages for empty/whitespace-only/over-500 descriptions
@@ -177,7 +177,7 @@ This plan implements a serverless AI-powered task management application using R
     - Call POST /tasks API on submit
     - _Requirements: 1.2, 1.3, 1.4, 1.5, 1.6_
 
-  - [ ] 9.3 Implement TopThreePanel component
+  - [x] 9.3 Implement TopThreePanel component
     - Display dedicated section above the task list
     - Show up to 3 recommended tasks with their details
     - Handle fewer than 3 tasks gracefully
@@ -185,7 +185,7 @@ This plan implements a serverless AI-powered task management application using R
     - Refresh top-three when a task is completed or deleted
     - _Requirements: 4.1, 4.3, 4.4, 4.5, 4.6_
 
-  - [ ] 9.4 Implement QuadrantView component
+  - [x] 9.4 Implement QuadrantView component
     - Render four-panel Eisenhower Matrix layout
     - Display quadrants in order: Do First, Schedule, Delegate, Eliminate
     - Sort tasks within each quadrant by priorityScore descending, ties by createdAt descending
@@ -193,25 +193,25 @@ This plan implements a serverless AI-powered task management application using R
     - Show invitation prompt when no tasks exist at all
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5_
 
-  - [ ] 9.5 Implement TaskCard component
+  - [x] 9.5 Implement TaskCard component
     - Display task description, quadrant label, and priority score
     - Add complete/incomplete toggle button
     - Add delete button with confirmation dialog
     - Apply strikethrough and reduced opacity for completed tasks
     - _Requirements: 2.2, 3.3, 5.2, 6.1_
 
-  - [ ] 9.6 Implement CompletedSection and ErrorBanner components
+  - [x] 9.6 Implement CompletedSection and ErrorBanner components
     - Build collapsible completed tasks section below active list
     - Display completed tasks with strikethrough styling
     - Build non-blocking error banner with auto-dismiss on retry success
     - Show specific error messages for different failure types
     - _Requirements: 5.4, 1.6, 6.5_
 
-- [ ] 10. Checkpoint - Frontend components complete
+- [~] 10. Checkpoint - Frontend components complete
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 11. Integration and wiring
-  - [ ] 11.1 Wire frontend to backend API
+  - [~] 11.1 Wire frontend to backend API
     - Connect all component actions to API client calls
     - Implement loading states during API calls
     - Handle 503 AI_UNAVAILABLE responses: show task with defaults, schedule retry
@@ -220,7 +220,7 @@ This plan implements a serverless AI-powered task management application using R
     - Wire task completion/deletion to trigger top-three regeneration
     - _Requirements: 1.4, 2.2, 3.3, 4.5, 5.1, 6.2, 6.4, 8.5_
 
-  - [ ] 11.2 Set up AWS infrastructure configuration
+  - [~] 11.2 Set up AWS infrastructure configuration
     - Create DynamoDB table definition with GSI1 configuration
     - Configure Lambda function with Bedrock permissions and DynamoDB access
     - Configure API Gateway REST API with API key requirement and CORS
@@ -235,7 +235,7 @@ This plan implements a serverless AI-powered task management application using R
     - Test top-three regeneration after task completion/deletion
     - _Requirements: 8.1, 8.2, 4.5, 6.4, 3.4_
 
-- [ ] 12. Final checkpoint - Ensure all tests pass
+- [~] 12. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
