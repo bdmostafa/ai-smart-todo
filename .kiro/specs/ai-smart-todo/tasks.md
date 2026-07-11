@@ -161,7 +161,7 @@ This plan implements a serverless AI-powered task management application using R
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 9. Implement React frontend - Core components
-  - [-] 9.1 Set up React frontend with Vite and state management
+  - [ ] 9.1 Set up React frontend with Vite and state management
     - Initialize Vite React TypeScript project in `frontend/`
     - Set up app state management (React Context or Zustand) with `AppState` interface
     - Implement userId generation/retrieval from localStorage on app load
@@ -169,7 +169,7 @@ This plan implements a serverless AI-powered task management application using R
     - Implement optimistic update pattern with rollback on failure
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5_
 
-  - [~] 9.2 Implement TaskInput component
+  - [ ] 9.2 Implement TaskInput component
     - Build text input with character counter (1-500 chars)
     - Implement client-side trim and validation before submission
     - Display validation error messages for empty/whitespace-only/over-500 descriptions
@@ -177,7 +177,7 @@ This plan implements a serverless AI-powered task management application using R
     - Call POST /tasks API on submit
     - _Requirements: 1.2, 1.3, 1.4, 1.5, 1.6_
 
-  - [~] 9.3 Implement TopThreePanel component
+  - [ ] 9.3 Implement TopThreePanel component
     - Display dedicated section above the task list
     - Show up to 3 recommended tasks with their details
     - Handle fewer than 3 tasks gracefully
@@ -185,7 +185,7 @@ This plan implements a serverless AI-powered task management application using R
     - Refresh top-three when a task is completed or deleted
     - _Requirements: 4.1, 4.3, 4.4, 4.5, 4.6_
 
-  - [~] 9.4 Implement QuadrantView component
+  - [ ] 9.4 Implement QuadrantView component
     - Render four-panel Eisenhower Matrix layout
     - Display quadrants in order: Do First, Schedule, Delegate, Eliminate
     - Sort tasks within each quadrant by priorityScore descending, ties by createdAt descending
@@ -193,25 +193,25 @@ This plan implements a serverless AI-powered task management application using R
     - Show invitation prompt when no tasks exist at all
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5_
 
-  - [~] 9.5 Implement TaskCard component
+  - [ ] 9.5 Implement TaskCard component
     - Display task description, quadrant label, and priority score
     - Add complete/incomplete toggle button
     - Add delete button with confirmation dialog
     - Apply strikethrough and reduced opacity for completed tasks
     - _Requirements: 2.2, 3.3, 5.2, 6.1_
 
-  - [~] 9.6 Implement CompletedSection and ErrorBanner components
+  - [ ] 9.6 Implement CompletedSection and ErrorBanner components
     - Build collapsible completed tasks section below active list
     - Display completed tasks with strikethrough styling
     - Build non-blocking error banner with auto-dismiss on retry success
     - Show specific error messages for different failure types
     - _Requirements: 5.4, 1.6, 6.5_
 
-- [~] 10. Checkpoint - Frontend components complete
+- [ ] 10. Checkpoint - Frontend components complete
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 11. Integration and wiring
-  - [~] 11.1 Wire frontend to backend API
+  - [ ] 11.1 Wire frontend to backend API
     - Connect all component actions to API client calls
     - Implement loading states during API calls
     - Handle 503 AI_UNAVAILABLE responses: show task with defaults, schedule retry
@@ -220,7 +220,7 @@ This plan implements a serverless AI-powered task management application using R
     - Wire task completion/deletion to trigger top-three regeneration
     - _Requirements: 1.4, 2.2, 3.3, 4.5, 5.1, 6.2, 6.4, 8.5_
 
-  - [~] 11.2 Set up AWS infrastructure configuration
+  - [ ] 11.2 Set up AWS infrastructure configuration
     - Create DynamoDB table definition with GSI1 configuration
     - Configure Lambda function with Bedrock permissions and DynamoDB access
     - Configure API Gateway REST API with API key requirement and CORS
@@ -235,7 +235,7 @@ This plan implements a serverless AI-powered task management application using R
     - Test top-three regeneration after task completion/deletion
     - _Requirements: 8.1, 8.2, 4.5, 6.4, 3.4_
 
-- [~] 12. Final checkpoint - Ensure all tests pass
+- [ ] 12. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
