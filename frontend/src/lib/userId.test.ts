@@ -1,6 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
 import { describe, it, expect, beforeEach } from 'vitest';
 import { getUserId, isValidUuidV4 } from './userId';
 
