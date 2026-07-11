@@ -1,0 +1,35 @@
+# SAM CLI configuration file
+# More info: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
+
+version = 0.1
+
+[default.global.parameters]
+stack_name = "ai-smart-todo"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.validate.parameters]
+lint = true
+
+[default.deploy.parameters]
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+parameter_overrides = "Environment=\"dev\" FrontendOrigin=\"*\""
+tags = "Project=\"ai-smart-todo\" Environment=\"dev\""
+
+[default.sync.parameters]
+watch = true
+
+[default.local_start_api.parameters]
+warm_containers = "EAGER"
+
+[prod.deploy.parameters]
+stack_name = "ai-smart-todo-prod"
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+parameter_overrides = "Environment=\"prod\" FrontendOrigin=\"https://your-amplify-domain.amplifyapp.com\""
+tags = "Project=\"ai-smart-todo\" Environment=\"prod\""

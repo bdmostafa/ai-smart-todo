@@ -1,0 +1,197 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AI Smart To-Do with Priority Scoring - Serverless Backend
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: nodejs20.x
+    MemorySize: 256
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+  FrontendOrigin:
+    Type: String
+    Default: '*'
+    Description: Frontend origin URL for CORS (use specific origin in production)
+
+Resources:
+  # ──────────────────────────────────────────────
+  # DynamoDB Table - Single Table Design
+  # ──────────────────────────────────────────────
+  TodoTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub 'ai-smart-todo-${Environment}'
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: SK
+          AttributeType: S
+        - AttributeName: GSI1PK
+          AttributeType: S
+        - AttributeName: GSI1SK
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: GSI1
+          KeySchema:
+            - AttributeName: GSI1PK
+              KeyType: HASH
+            - AttributeName: GSI1SK
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Project
+          Value: ai-smart-todo
+        - Key: Environment
+          Value: !Ref Environment
+
+  # ──────────────────────────────────────────────
+  # Lambda Function
+  # ──────────────────────────────────────────────
+  TodoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'ai-smart-todo-${Environment}'
+      CodeUri: backend/
+      Handler: dist/handler.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref TodoTable
+          AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TodoTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:Query
+              Resource: !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${TodoTable}/index/GSI1'
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+              Resource: !Sub 'arn:aws:bedrock:${AWS::Region}::foundation-model/anthropic.claude-3-haiku-20240307-v1:0'
+      Events:
+        CreateTask:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TodoApi
+            Path: /tasks
+            Method: POST
+        GetTasks:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TodoApi
+            Path: /tasks
+            Method: GET
+        CompleteTask:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TodoApi
+            Path: /tasks/{taskId}/complete
+            Method: PATCH
+        IncompleteTask:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TodoApi
+            Path: /tasks/{taskId}/incomplete
+            Method: PATCH
+        DeleteTask:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TodoApi
+            Path: /tasks/{taskId}
+            Method: DELETE
+        TopThree:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TodoApi
+            Path: /tasks/top-three
+            Method: POST
+        Recalculate:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TodoApi
+            Path: /tasks/recalculate
+            Method: POST
+    Metadata:
+      BuildMethod: makefile
+
+  # ──────────────────────────────────────────────
+  # API Gateway REST API
+  # ──────────────────────────────────────────────
+  TodoApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub 'ai-smart-todo-api-${Environment}'
+      StageName: !Ref Environment
+      Auth:
+        ApiKeyRequired: true
+      Cors:
+        AllowMethods: "'GET,POST,PATCH,DELETE,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Api-Key,X-User-Id,Authorization'"
+        AllowOrigin: !Sub "'${FrontendOrigin}'"
+        AllowCredentials: false
+
+  # ──────────────────────────────────────────────
+  # API Key and Usage Plan
+  # ──────────────────────────────────────────────
+  TodoApiKey:
+    Type: AWS::ApiGateway::ApiKey
+    Properties:
+      Name: !Sub 'ai-smart-todo-key-${Environment}'
+      Enabled: true
+      StageKeys:
+        - RestApiId: !Ref TodoApi
+          StageName: !Ref Environment
+
+  TodoUsagePlan:
+    Type: AWS::ApiGateway::UsagePlan
+    Properties:
+      UsagePlanName: !Sub 'ai-smart-todo-plan-${Environment}'
+      ApiStages:
+        - ApiId: !Ref TodoApi
+          Stage: !Ref Environment
+      Throttle:
+        BurstLimit: 50
+        RateLimit: 100
+      Quota:
+        Limit: 10000
+        Period: DAY
+
+  TodoUsagePlanKey:
+    Type: AWS::ApiGateway::UsagePlanKey
+    Properties:
+      KeyId: !Ref TodoApiKey
+      KeyType: API_KEY
+      UsagePlanId: !Ref TodoUsagePlan
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub 'https://${TodoApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}'
+
+  ApiKeyId:
+    Description: API Key ID (retrieve value from AWS Console or CLI)
+    Value: !Ref TodoApiKey
+
+  TableName:
+    Description: DynamoDB table name
+    Value: !Ref TodoTable
+
+  FunctionArn:
+    Description: Lambda function ARN
+    Value: !GetAtt TodoFunction.Arn
