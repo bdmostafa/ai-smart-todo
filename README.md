@@ -75,6 +75,9 @@ AI Smart Todo is a full-stack serverless productivity application that uses AI t
 └─────────────────────────────────────────────────────────────────┘
 ```
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/f553353c-fd3f-4043-8b59-3f7109145f7b" />
+
+
 ---
 
 ### Component Breakdown
