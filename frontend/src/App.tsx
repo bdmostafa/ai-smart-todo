@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useAppStore } from './store/useAppStore';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 import { ErrorBanner } from './components/ErrorBanner';
 import { TaskInput } from './components/TaskInput';
 import { TopThreePanel } from './components/TopThreePanel';
@@ -11,12 +13,14 @@ import './App.css';
  * App – main application shell composing all components.
  *
  * Layout order:
- * 1. ErrorBanner (top, non-blocking)
- * 2. Title
- * 3. TaskInput
- * 4. TopThreePanel (above quadrant view)
- * 5. QuadrantView (incomplete tasks only)
- * 6. CompletedSection (below active list)
+ * 1. Header (sticky nav with theme toggle)
+ * 2. ErrorBanner (top, non-blocking)
+ * 3. Hero section with title
+ * 4. TaskInput
+ * 5. TopThreePanel (above quadrant view)
+ * 6. QuadrantView (incomplete tasks only)
+ * 7. CompletedSection (below active list)
+ * 8. Footer
  *
  * Requirements: 1.4, 2.2, 3.3, 4.5, 5.1, 6.2, 6.4, 8.5
  */
@@ -34,25 +38,36 @@ function App() {
   const incompleteTasks = tasks.filter((t) => t.status === 'incomplete');
 
   return (
-    <main className="app">
-      <ErrorBanner />
+    <>
+      <Header />
 
-      <h1 className="app__title">AI Smart To-Do</h1>
+      <main className="app">
+        <ErrorBanner />
 
-      <TaskInput />
-
-      {isLoading ? (
-        <div className="app__loading" aria-live="polite">
-          <p>Loading tasks...</p>
+        <div className="app__hero">
+          <h1 className="app__title">AI Smart Todo</h1>
+          <p className="app__subtitle">
+            Your AI-powered productivity companion. Organize tasks smartly with the Eisenhower Matrix.
+          </p>
         </div>
-      ) : (
-        <>
-          <TopThreePanel />
-          <QuadrantView tasks={incompleteTasks} />
-          <CompletedSection />
-        </>
-      )}
-    </main>
+
+        <TaskInput />
+
+        {isLoading ? (
+          <div className="app__loading" aria-live="polite">
+            <p>Loading your tasks...</p>
+          </div>
+        ) : (
+          <>
+            <TopThreePanel />
+            <QuadrantView tasks={incompleteTasks} />
+            <CompletedSection />
+          </>
+        )}
+      </main>
+
+      <Footer />
+    </>
   );
 }
 
