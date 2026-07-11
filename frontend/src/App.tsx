@@ -7,6 +7,7 @@ import { TaskInput } from './components/TaskInput';
 import { TopThreePanel } from './components/TopThreePanel';
 import { QuadrantView } from './components/QuadrantView';
 import { CompletedSection } from './components/CompletedSection';
+import { FutureFeatures } from './components/FutureFeatures';
 import './App.css';
 
 /**
@@ -62,6 +63,7 @@ function App() {
             <TopThreePanel />
             <QuadrantView tasks={incompleteTasks} />
             <CompletedSection />
+            <FutureFeatures />
           </>
         )}
       </main>
