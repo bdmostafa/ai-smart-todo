@@ -58,8 +58,8 @@ This plan implements a serverless AI-powered task management application using R
     - Generate random objects (missing fields, wrong types, boundary values)
     - Assert: returns 400 error with field messages when invalid; passes when all constraints met
 
-- [ ] 3. Implement DynamoDB data layer
-  - [-] 3.1 Implement DynamoDB service module
+- [x] 3. Implement DynamoDB data layer
+  - [x] 3.1 Implement DynamoDB service module
     - Create `backend/src/dbService.ts`
     - Implement `createTask(task: Task): Promise<Task>` — PutItem with PK=`USER#{userId}`, SK=`TASK#{taskId}`, GSI1PK/GSI1SK
     - Implement `getTasksByUser(userId: string): Promise<Task[]>` — Query by PK
