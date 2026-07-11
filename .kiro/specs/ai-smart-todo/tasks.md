@@ -207,11 +207,11 @@ This plan implements a serverless AI-powered task management application using R
     - Show specific error messages for different failure types
     - _Requirements: 5.4, 1.6, 6.5_
 
-- [~] 10. Checkpoint - Frontend components complete
+- [x] 10. Checkpoint - Frontend components complete
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 11. Integration and wiring
-  - [~] 11.1 Wire frontend to backend API
+- [x] 11. Integration and wiring
+  - [x] 11.1 Wire frontend to backend API
     - Connect all component actions to API client calls
     - Implement loading states during API calls
     - Handle 503 AI_UNAVAILABLE responses: show task with defaults, schedule retry
@@ -220,14 +220,14 @@ This plan implements a serverless AI-powered task management application using R
     - Wire task completion/deletion to trigger top-three regeneration
     - _Requirements: 1.4, 2.2, 3.3, 4.5, 5.1, 6.2, 6.4, 8.5_
 
-  - [~] 11.2 Set up AWS infrastructure configuration
+  - [x] 11.2 Set up AWS infrastructure configuration
     - Create DynamoDB table definition with GSI1 configuration
     - Configure Lambda function with Bedrock permissions and DynamoDB access
     - Configure API Gateway REST API with API key requirement and CORS
     - Set up Amplify Hosting configuration for frontend deployment
     - _Requirements: 8.1, 8.3, 9.1, 9.5_
 
-  - [ ]* 11.3 Write integration tests
+  - [x]* 11.3 Write integration tests
     - Test full task lifecycle: create → AI enrichment → complete → restore → delete
     - Test API routing with valid/invalid API keys
     - Test DynamoDB operations with mocked AWS SDK
@@ -235,7 +235,7 @@ This plan implements a serverless AI-powered task management application using R
     - Test top-three regeneration after task completion/deletion
     - _Requirements: 8.1, 8.2, 4.5, 6.4, 3.4_
 
-- [~] 12. Final checkpoint - Ensure all tests pass
+- [-] 12. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
