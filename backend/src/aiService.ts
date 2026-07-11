@@ -12,7 +12,7 @@ import { AiResult, Quadrant } from './types';
 
 // --- Constants ---
 
-const MODEL_ID = 'us.anthropic.claude-haiku-4-5-20251001-v1:0';
+const MODEL_ID = 'amazon.nova-micro-v1:0';
 const MAX_RETRIES = 3;
 const RETRY_INTERVAL_MS = 5000;
 const CIRCUIT_BREAKER_THRESHOLD = 3;
@@ -211,17 +211,18 @@ function recordFailure(): void {
 // --- Bedrock Invocation ---
 
 /**
- * Invoke Bedrock Claude 3 Haiku with the given prompt.
+ * Invoke Bedrock Amazon Nova Micro with the given prompt.
  * Returns the raw text response from the model.
  */
 async function invokeBedrock(prompt: string): Promise<string> {
   const requestBody = JSON.stringify({
-    anthropic_version: 'bedrock-2023-05-31',
-    max_tokens: 256,
+    inferenceConfig: {
+      max_new_tokens: 256,
+    },
     messages: [
       {
         role: 'user',
-        content: prompt,
+        content: [{ text: prompt }],
       },
     ],
   });
@@ -236,9 +237,9 @@ async function invokeBedrock(prompt: string): Promise<string> {
   const response = await bedrockClient.send(command);
   const responseBody = JSON.parse(new TextDecoder().decode(response.body));
 
-  // Claude 3 response format: { content: [{ type: 'text', text: '...' }] }
-  if (responseBody.content && responseBody.content.length > 0) {
-    return responseBody.content[0].text;
+  // Nova response format: { output: { message: { content: [{ text: '...' }] } } }
+  if (responseBody.output?.message?.content?.length > 0) {
+    return responseBody.output.message.content[0].text;
   }
 
   throw new Error('Empty response from Bedrock');
