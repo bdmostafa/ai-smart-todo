@@ -151,22 +151,14 @@ Resources:
   # ──────────────────────────────────────────────
   TodoApiKey:
     Type: AWS::ApiGateway::ApiKey
-    DependsOn: TodoFunction
     Properties:
       Name: !Sub 'ai-smart-todo-key-${Environment}'
       Enabled: true
-      StageKeys:
-        - RestApiId: !Ref TodoApi
-          StageName: !Ref Environment
 
   TodoUsagePlan:
     Type: AWS::ApiGateway::UsagePlan
-    DependsOn: TodoFunction
     Properties:
       UsagePlanName: !Sub 'ai-smart-todo-plan-${Environment}'
-      ApiStages:
-        - ApiId: !Ref TodoApi
-          Stage: !Ref Environment
       Throttle:
         BurstLimit: 50
         RateLimit: 100
