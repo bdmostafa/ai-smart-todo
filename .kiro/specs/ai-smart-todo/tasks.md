@@ -6,8 +6,8 @@ This plan implements a serverless AI-powered task management application using R
 
 ## Tasks
 
-- [ ] 1. Set up project structure and core interfaces
-  - [-] 1.1 Initialize project structure with backend and frontend directories
+- [x] 1. Set up project structure and core interfaces
+  - [x] 1.1 Initialize project structure with backend and frontend directories
     - Create `backend/` directory with `src/` containing module files: `handler.ts`, `validator.ts`, `taskService.ts`, `aiService.ts`, `dbService.ts`, `scorer.ts`
     - Create `frontend/` directory with React + Vite scaffold
     - Set up `tsconfig.json` for both frontend and backend
@@ -16,15 +16,15 @@ This plan implements a serverless AI-powered task management application using R
     - Install dev dependencies: `vitest`, `fast-check`, `typescript`, `@types/node`
     - _Requirements: 8.1, 9.1_
 
-  - [-] 1.2 Define TypeScript interfaces and types
+  - [x] 1.2 Define TypeScript interfaces and types
     - Create `backend/src/types.ts` with `Task`, `CreateTaskRequest`, `ApiResponse`, `ErrorResponse`, `AiResult` interfaces
     - Define quadrant type: `'do-first' | 'schedule' | 'delegate' | 'eliminate'`
     - Define status type: `'incomplete' | 'complete'`
     - Define error codes: `VALIDATION_ERROR | NOT_FOUND | AI_UNAVAILABLE | INTERNAL_ERROR`
     - _Requirements: 9.1, 8.6_
 
-- [ ] 2. Implement input validation module
-  - [~] 2.1 Implement task description validator
+- [x] 2. Implement input validation module
+  - [x] 2.1 Implement task description validator
     - Create `backend/src/validator.ts`
     - Implement `validateDescription(input: string)`: trim whitespace, check length 1-500, reject empty/whitespace-only
     - Return typed result with error messages indicating allowed character range
@@ -36,7 +36,7 @@ This plan implements a serverless AI-powered task management application using R
     - Use fast-check to generate random strings (0-1000 chars), whitespace variants, unicode
     - Assert: accepted iff trimmed length in [1, 500]; rejected for empty, whitespace-only, or >500 after trim
 
-  - [~] 2.3 Implement UUID v4 validator and generator
+  - [x] 2.3 Implement UUID v4 validator and generator
     - Add `validateUserId(id: string): boolean` using regex `/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i`
     - Add `generateUserId(): string` using `crypto.randomUUID()` or `uuid` package
     - _Requirements: 10.1, 10.4_
@@ -47,7 +47,7 @@ This plan implements a serverless AI-powered task management application using R
     - Generate random strings (valid UUID v4, invalid formats, empty)
     - Assert: validation accepts iff format matches UUID v4 spec; generated UUIDs always pass validation
 
-  - [~] 2.5 Implement request body validator
+  - [x] 2.5 Implement request body validator
     - Add `validateCreateTaskRequest(body: unknown)`: check required `description` field exists, is string type, passes description validation
     - Return 400-style error with field-specific messages for missing/invalid fields
     - _Requirements: 8.6, 1.3_
@@ -59,7 +59,7 @@ This plan implements a serverless AI-powered task management application using R
     - Assert: returns 400 error with field messages when invalid; passes when all constraints met
 
 - [ ] 3. Implement DynamoDB data layer
-  - [~] 3.1 Implement DynamoDB service module
+  - [-] 3.1 Implement DynamoDB service module
     - Create `backend/src/dbService.ts`
     - Implement `createTask(task: Task): Promise<Task>` — PutItem with PK=`USER#{userId}`, SK=`TASK#{taskId}`, GSI1PK/GSI1SK
     - Implement `getTasksByUser(userId: string): Promise<Task[]>` — Query by PK
