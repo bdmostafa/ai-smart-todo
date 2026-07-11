@@ -112,8 +112,8 @@ This plan implements a serverless AI-powered task management application using R
     - Generate random tasks in same/different quadrants with random scores and timestamps
     - Assert: grouped by quadrant in correct order; within quadrant sorted by score desc, ties by createdAt desc
 
-- [ ] 6. Implement task service business logic
-  - [-] 6.1 Implement task service orchestration
+- [x] 6. Implement task service business logic
+  - [x] 6.1 Implement task service orchestration
     - Create `backend/src/taskService.ts`
     - Implement `createTask(userId: string, description: string)`: validate → write to DDB with defaults → invoke AI → update task with AI results (write-then-enrich pattern)
     - Implement `completeTask(userId: string, taskId: string)`: update status to "complete", set completedAt, update GSI keys
@@ -136,7 +136,7 @@ This plan implements a serverless AI-powered task management application using R
     - Assert: active view contains only incomplete, non-deleted tasks
 
 - [ ] 7. Implement Lambda handler with API routing
-  - [~] 7.1 Implement Lambda entry point and route handler
+  - [-] 7.1 Implement Lambda entry point and route handler
     - Create `backend/src/handler.ts`
     - Implement route matching for all endpoints: POST /tasks, GET /tasks, PATCH /tasks/{taskId}/complete, PATCH /tasks/{taskId}/incomplete, DELETE /tasks/{taskId}, POST /tasks/top-three, POST /tasks/recalculate
     - Extract userId from request headers
@@ -145,7 +145,7 @@ This plan implements a serverless AI-powered task management application using R
     - Handle CORS headers for frontend access
     - _Requirements: 8.1, 8.2, 8.5, 8.6_
 
-  - [~] 7.2 Implement API key authorization middleware
+  - [-] 7.2 Implement API key authorization middleware
     - Add middleware function that checks for API key header presence and value match
     - Return 401 Unauthorized with appropriate error body for missing/invalid keys
     - Apply middleware before any route processing
