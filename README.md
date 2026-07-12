@@ -22,6 +22,10 @@ PriorityLens is a full-stack serverless productivity application that uses AI to
 - ⚡ Serverless architecture — scales to zero, pay only for what you use
 - 🔄 Optimistic UI updates with automatic rollback on failure
 
+<img width="876" height="815" alt="priority lens ai smart ui task list" src="https://github.com/user-attachments/assets/66942535-b407-4784-b5ac-bc2c28c3779b" />
+
+<img width="861" height="856" alt="priority lens ai smart 2" src="https://github.com/user-attachments/assets/0d87f223-d19f-41ab-ac71-9c22726736aa" />
+
 ---
 
 ## Architecture
@@ -75,7 +79,8 @@ PriorityLens is a full-stack serverless productivity application that uses AI to
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/f553353c-fd3f-4043-8b59-3f7109145f7b" />
+### High-Level Architecture (Priority Lens)
+<img width="793" height="625" alt="Priority Lens high level architecture" src="https://github.com/user-attachments/assets/e0869dc5-9814-4525-8c9d-71983e241575" />
 
 
 ---
@@ -362,6 +367,25 @@ ai-smart-todo/
 
 ---
 
+## What's Next: Future Enhancements
+
+- Amazon Cognito authentication
+- Recurring tasks
+- Natural language dates
+- Team collaboration
+- Mobile app
+- Offline mode
+- Productivity analytics
+- AI response caching
+- Per-user rate limiting
+
+<img width="892" height="857" alt="Screenshot 2026-07-12 at 03 47 58" src="https://github.com/user-attachments/assets/4d4128df-28fa-4756-a0ce-0c73e491a705" />
+
+<img width="923" height="621" alt="future enhancement list for ai smart priority lens app" src="https://github.com/user-attachments/assets/56c0200b-f819-447e-98ef-2333e312f31e" />
+
+
+---
+
 ## AWS Builder Center Weekend Challenge
 
 This project was built for the [AWS Builder Center Build a Productivity App Weekend Challenge](https://builder.aws) (July 10-13, 2026).
@@ -371,7 +395,7 @@ This project was built for the [AWS Builder Center Build a Productivity App Week
 | Resource | Link |
 |----------|------|
 | AWS Builder Center | [builder.aws](https://builder.aws) |
-| Challenge Article | *Published on AWS Builder Center* |
+| Challenge Article | [Weekend Productivity Challenge: PriorityLens — AI That Sees What Matters Most](https://builder.aws.com/content/3GNhY76oZz0HjY5L5R3DbcG2p8m/weekend-productivity-challenge-prioritylens-ai-that-sees-what-matters-most) (*Published on AWS Builder Center*) |
 | AWS Free Tier | [aws.amazon.com/free](https://aws.amazon.com/free/) |
 | Amazon Bedrock | [aws.amazon.com/bedrock](https://aws.amazon.com/bedrock/) |
 | Amazon Nova Models | [docs.aws.amazon.com/bedrock/latest/userguide/nova](https://docs.aws.amazon.com/bedrock/latest/userguide/nova.html) |
@@ -385,7 +409,6 @@ This project was built for the [AWS Builder Center Build a Productivity App Week
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — Full system architecture with diagrams
 - [DEPLOY.md](./DEPLOY.md) — Step-by-step deployment guide
-- [BLOG.md](./BLOG.md) — AWS Builder Center challenge article
 
 ---
 
