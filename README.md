@@ -1,6 +1,6 @@
-# AI Smart Todo
+# PriorityLens
 
-> Your AI-powered daily productivity companion. Organize, prioritize, and conquer your tasks with the Eisenhower Matrix — powered by Amazon Bedrock AI.
+> AI that sees what matters most. Organize, prioritize, and conquer your tasks with the Eisenhower Matrix — powered by Amazon Bedrock AI.
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Node](https://img.shields.io/badge/node-20.x-green)
@@ -11,7 +11,7 @@
 
 ## Overview
 
-AI Smart Todo is a full-stack serverless productivity application that uses AI to automatically categorize and prioritize your tasks using the Eisenhower Matrix framework. Simply describe what you need to do — the AI handles the rest.
+PriorityLens is a full-stack serverless productivity application that uses AI to automatically categorize and prioritize your tasks using the Eisenhower Matrix framework. Simply describe what you need to do — the AI handles the rest.
 
 **Key Features:**
 - 🧠 AI-powered task classification (Urgent/Important quadrants)
@@ -359,6 +359,33 @@ ai-smart-todo/
 | Zustand over Redux | Minimal boilerplate, perfect for this app size |
 | UUID-based user ID | Anonymous-first, no auth infrastructure needed for MVP |
 | PAY_PER_REQUEST DynamoDB | Ideal for unpredictable traffic, no capacity planning |
+
+---
+
+## AWS Builder Center Weekend Challenge
+
+This project was built for the [AWS Builder Center Build a Productivity App Weekend Challenge](https://builder.aws) (July 10-13, 2026).
+
+### Challenge Resources
+
+| Resource | Link |
+|----------|------|
+| AWS Builder Center | [builder.aws](https://builder.aws) |
+| Challenge Article | *Published on AWS Builder Center* |
+| AWS Free Tier | [aws.amazon.com/free](https://aws.amazon.com/free/) |
+| Amazon Bedrock | [aws.amazon.com/bedrock](https://aws.amazon.com/bedrock/) |
+| Amazon Nova Models | [docs.aws.amazon.com/bedrock/latest/userguide/nova](https://docs.aws.amazon.com/bedrock/latest/userguide/nova.html) |
+| AWS Lambda | [aws.amazon.com/lambda](https://aws.amazon.com/lambda/) |
+| Amazon DynamoDB | [aws.amazon.com/dynamodb](https://aws.amazon.com/dynamodb/) |
+| AWS Amplify Hosting | [aws.amazon.com/amplify](https://aws.amazon.com/amplify/) |
+| AWS SAM CLI | [docs.aws.amazon.com/sam](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/) |
+| API Gateway | [aws.amazon.com/api-gateway](https://aws.amazon.com/api-gateway/) |
+
+### Related Documentation
+
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — Full system architecture with diagrams
+- [DEPLOY.md](./DEPLOY.md) — Step-by-step deployment guide
+- [BLOG.md](./BLOG.md) — AWS Builder Center challenge article
 
 ---
 

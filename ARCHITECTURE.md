@@ -1,8 +1,8 @@
-# Architecture Document — AI Smart Todo
+# Architecture Document — PriorityLens
 
 ## 1. System Overview
 
-AI Smart Todo is a serverless, AI-powered task management application built entirely on AWS. It uses the Eisenhower Matrix framework to automatically categorize and prioritize tasks through Amazon Bedrock's Nova Micro AI model.
+PriorityLens is a serverless, AI-powered task management application built entirely on AWS. It uses the Eisenhower Matrix framework to automatically categorize and prioritize tasks through Amazon Bedrock's Nova Micro AI model.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐

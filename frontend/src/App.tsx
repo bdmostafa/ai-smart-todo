@@ -46,7 +46,7 @@ function App() {
         <ErrorBanner />
 
         <div className="app__hero">
-          <h1 className="app__title">AI Smart Todo</h1>
+          <h1 className="app__title">PriorityLens</h1>
           <p className="app__subtitle">
             Your AI-powered productivity companion. Organize tasks smartly with the Eisenhower Matrix.
           </p>

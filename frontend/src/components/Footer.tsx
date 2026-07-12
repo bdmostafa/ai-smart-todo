@@ -21,7 +21,7 @@ export function Footer() {
           {' '}— powered by AI to simplify your day
         </p>
         <p className="footer__copyright">
-          © {year} AI Smart Todo. All rights reserved.
+          © {year} PriorityLens. All rights reserved.
         </p>
       </div>
     </footer>

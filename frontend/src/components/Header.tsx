@@ -26,7 +26,7 @@ export function Header() {
               />
             </svg>
           </div>
-          <span className="header__title">AI Smart Todo</span>
+          <span className="header__title">PriorityLens</span>
         </div>
 
         <div className="header__theme-toggle" role="radiogroup" aria-label="Theme selection">
