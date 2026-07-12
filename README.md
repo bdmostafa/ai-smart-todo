@@ -371,7 +371,7 @@ This project was built for the [AWS Builder Center Build a Productivity App Week
 | Resource | Link |
 |----------|------|
 | AWS Builder Center | [builder.aws](https://builder.aws) |
-| Challenge Article | *Published on AWS Builder Center* |
+| Challenge Article | [Weekend Productivity Challenge: PriorityLens — AI That Sees What Matters Most](https://builder.aws.com/content/3GNhY76oZz0HjY5L5R3DbcG2p8m/weekend-productivity-challenge-prioritylens-ai-that-sees-what-matters-most) (*Published on AWS Builder Center*) |
 | AWS Free Tier | [aws.amazon.com/free](https://aws.amazon.com/free/) |
 | Amazon Bedrock | [aws.amazon.com/bedrock](https://aws.amazon.com/bedrock/) |
 | Amazon Nova Models | [docs.aws.amazon.com/bedrock/latest/userguide/nova](https://docs.aws.amazon.com/bedrock/latest/userguide/nova.html) |
@@ -385,7 +385,6 @@ This project was built for the [AWS Builder Center Build a Productivity App Week
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — Full system architecture with diagrams
 - [DEPLOY.md](./DEPLOY.md) — Step-by-step deployment guide
-- [BLOG.md](./BLOG.md) — AWS Builder Center challenge article
 
 ---
 
